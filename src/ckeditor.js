@@ -43,6 +43,7 @@ import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalli
 import SpecialCharacters from '@ckeditor/ckeditor5-special-characters/src/specialcharacters';
 import SpecialCharactersEssentials from '@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials';
 import PageBreak from '@ckeditor/ckeditor5-page-break/src/pagebreak';
+import ExportPdf from '@ckeditor/ckeditor5-export-pdf/src/exportpdf';
 
 export default class DecoupledEditor extends DecoupledEditorBase {}
 
@@ -84,7 +85,8 @@ DecoupledEditor.builtinPlugins = [
 	HorizontalLine,
 	SpecialCharacters, 
 	SpecialCharactersEssentials,
-	PageBreak
+	PageBreak,
+	ExportPdf
 ];
 
 // Editor configuration.
@@ -124,7 +126,9 @@ DecoupledEditor.defaultConfig = {
 			'mediaEmbed',
 			'|',
 			'undo',
-			'redo'
+			'redo',
+			'|',
+			'exportPdf'
 		]
 	},
 	image: {
@@ -138,8 +142,26 @@ DecoupledEditor.defaultConfig = {
 			'imageStyle:full',
 			'imageStyle:alignRight',
 			'|',
-			'imageTextAlternative'
+			'imageTextAlternative',
+			'|',
+			'exportPdf' 
 		]
+	},
+	exportPdf: {
+		stylesheets: [
+			'./path/to/fonts.css',
+			'EDITOR_STYLES',
+			'./path/to/style.css'
+		],
+		fileName: 'my-file.pdf',
+		converterOptions: {
+			format: 'A4',
+			margin_top: '20mm',
+			margin_bottom: '20mm',
+			margin_right: '12mm',
+			margin_left: '12mm',
+			page_orientation: 'portrait'
+		}
 	},
 	table: {
 		contentToolbar: [
